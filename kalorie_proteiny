@@ -1,0 +1,47 @@
+age = int(input("Zadej vek: "))
+weight = int(input("Zadej vahu: "))
+fat = int(input("Zadej procento tuku: "))
+sex = int(input("Zadej pohlavi 0 - zena, 1 - muz: "))
+act = int(input("Level aktivity 1 - sedave, 2 - lehka, 3 - stredni, 4 - velka, 5 - extremni: "))
+
+fat = (fat/100) * weight
+
+lbm = weight - fat
+
+if act == 1:
+    act = 1.2
+elif act == 2:
+    act = 1.375
+elif act == 3:
+    act = 1.55
+elif act == 4:
+    act = 1.725
+else:
+    act = 1.9
+    
+bmr = lbm*13.587 + fat*9.613 + sex*198 - age*3.351 + 674
+
+TDEE = bmr * act
+
+if age < 30:
+    print("Denni příjem bez deficitu je od",round(lbm * 1.8),"do",round(lbm * 2),"gramů proteinu.")
+    print("Denni příjem v deficitu je od",round(lbm * 2.2),"do",round(lbm * 2.4),"gramů proteinu.")
+    
+elif age < 40:
+    print("Denni příjem bez deficitu je od",round(lbm * 2),"do",round(lbm * 2.3),"gramů proteinu.")
+    print("Denni příjem v deficitu je od",round(lbm * 2.4),"do",round(lbm * 2.8),"gramů proteinu.")
+    
+elif age < 50:
+    print("Denni příjem bez deficitu je od",round(lbm * 2.3),"do",round(lbm * 2.6),"gramů proteinu.")
+    print("Denni příjem v deficitu je od",round(lbm * 2.8),"do",round(lbm * 3.1),"gramů proteinu.")
+    
+elif age < 60:
+    print("Denni příjem bez deficitu je od",round(lbm * 2.6),"do",round(lbm * 2.9),"gramů proteinu.")
+    print("Denni příjem v deficitu je od",round(lbm * 3.1),"do",round(lbm * 3.5),"gramů proteinu.")
+    
+else:
+    print("Denni příjem bez deficitu je od",round(lbm * 2.9),"do",round(lbm * 3.2),"gramů proteinu.")
+    print("Denni příjem v deficitu je od",round(lbm * 3.5),"do",round(lbm * 3.8),"gramů proteinu.")
+    
+print("Předpokládaný výdej kalorií je:",round(TDEE),"kcal nebo",round(TDEE*4.185),"KJ")
+print("Příjem kalorií ve 20% deficitu je:",round((TDEE/100)*80),"kcal nebo",round((TDEE/100)*80*4.185),"KJ")
